@@ -4,4 +4,9 @@ function create(passengerId, travelId){
     travelsRepositories.insert(passengerId, travelId)
 }
 
-export const travelsServices = {create}
+async function read(){
+    const result = await travelsRepositories.select()
+    return result
+}
+
+export const travelsServices = {create, read}

@@ -4,7 +4,7 @@ import { travelsControllers } from "../controllers/travels.controllers.js";
 const travelsRoutes = Router()
 
 travelsRoutes.post("/travels", travelsControllers.create)
-travelsRoutes.get("/passenger/travels")
+travelsRoutes.get("/passengers/travels", travelsControllers.read)
 
 
 export default travelsRoutes

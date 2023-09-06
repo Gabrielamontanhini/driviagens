@@ -10,4 +10,14 @@ function create(req, res){
     }
 }
 
-export const travelsControllers = {create}
+async function read(req, res){
+    try{
+        const passengersTravels = await travelsServices.read()
+        return res.status(200).send(passengersTravels.rows)
+    }
+    catch (err){
+        res.status(500).send(err.message)
+    }
+}
+
+export const travelsControllers = {create, read}
