@@ -4,7 +4,7 @@ import { flightsControllers } from "../controllers/flights.controllers.js";
 const flightsRouter = Router()
 
 flightsRouter.post("/flights", flightsControllers.create)
-flightsRouter.get("/flights")
+flightsRouter.get("/flights", flightsControllers.read)
 
 
 export default flightsRouter
