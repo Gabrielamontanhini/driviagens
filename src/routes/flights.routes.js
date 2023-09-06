@@ -1,8 +1,9 @@
 import { Router } from "express";
+import { flightsControllers } from "../controllers/flights.controllers.js";
 
 const flightsRouter = Router()
 
-flightsRouter.post("/flights")
+flightsRouter.post("/flights", flightsControllers.create)
 flightsRouter.get("/flights")
 
 
