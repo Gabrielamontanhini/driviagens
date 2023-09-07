@@ -1,14 +1,9 @@
 import { passengersServices } from "../services/passengers.services.js"
 
-function create(req, res){
-    const {firstName, lastName} = req.body
-    try{
-        passengersServices.create(firstName, lastName)
-        res.sendStatus(201)
-
-    } catch (err){
-        res.status(500).send(err.message)
-    }
+function create(req, res) {
+    const { firstName, lastName } = req.body
+    passengersServices.create(firstName, lastName)
+    res.sendStatus(201)
 }
 
-export const passengersControllers = {create}
+export const passengersControllers = { create }

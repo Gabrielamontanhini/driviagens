@@ -7,12 +7,8 @@ async function create(req, res) {
 }
 
 async function read(req, res) {
-    try {
-        const allFlights = await flightsServices.read()
-        return res.status(200).send(allFlights.rows)
-    } catch (err) {
-        res.status(500).send(err.message)
-    }
+    const allFlights = await flightsServices.read()
+    return res.status(200).send(allFlights.rows)
 }
 
 export const flightsControllers = { create, read }
