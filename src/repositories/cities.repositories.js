@@ -10,4 +10,8 @@ async function select(name){
     return result.rows[0]
 }
 
-export const citiesRepositories = {insert, select}
+async function verifyCities(origin, destination){
+    const result = await db.query(`SELECT * FROM cities WHERE id=$1 OR id=$2;`, [origin, destination])
+    return result
+}
+export const citiesRepositories = {insert, select, verifyCities}

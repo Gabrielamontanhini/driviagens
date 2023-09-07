@@ -1,12 +1,18 @@
+import { conflictError } from "../errors/conflict.js";
+import { notFoundError } from "../errors/notFound.js";
+import { citiesRepositories } from "../repositories/cities.repositories.js";
 import { flightsRepositories } from "../repositories/flights.repositories.js";
 
-function create(origin, destination, date){
+async function create(origin, destination, date) {
+    const cityExists = await citiesRepositories.verifyCities(origin, destination)
+    if (cityExists.rows.length !== 2 || !cityExists.rows) throw notFoundError(`Origem e/ou destino`) //lança erro caso origem e/ou destino não existam
+    if (origin === destination) throw conflictError(origin) //lança erro caso origem e destino sejam iguais
     flightsRepositories.insert(origin, destination, date)
 }
 
-async function read(){
+async function read() {
     const result = await flightsRepositories.select()
     return result
 }
 
-export const flightsServices = {create, read}
+export const flightsServices = { create, read }

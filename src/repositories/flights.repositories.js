@@ -17,4 +17,5 @@ async function select(){
         return result
 }
 
+
 export const flightsRepositories = {insert, select}
