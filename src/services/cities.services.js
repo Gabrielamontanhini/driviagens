@@ -1,7 +1,10 @@
+import { conflictError } from "../errors/conflict.js";
 import { citiesRepositories } from "../repositories/cities.repositories.js";
 
-function create(name){
-    citiesRepositories.insert(name)
+async function create(name){
+    const existingCity = await citiesRepositories.select(name)
+    if (existingCity) throw conflictError
+    return citiesRepositories.insert(name)
 }
 
 export const citiesServices = {create}

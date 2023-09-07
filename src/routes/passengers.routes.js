@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { passengersControllers } from "../controllers/passengers.controllers.js";
-import { validateSchema } from "../middlewares/validate.schema.js";
+import { validateSchema } from "../middlewares/validateschema.middleware.js";
 import { passSchemas } from "../schemas/passengers.schemas.js";
 
 const passengersRoutes = Router()

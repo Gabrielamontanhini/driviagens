@@ -1,13 +1,9 @@
 import { citiesServices } from "../services/cities.services.js"
 
-function create(req, res){
-    const {name} = req.body
-    try{
-        citiesServices.create(name)
-        res.sendStatus(201)
-    }catch (err){
-        res.status(500).send(err.message)
-    }
+async function create(req, res) {
+    const { name } = req.body
+    await citiesServices.create(name)
+    return res.sendStatus(201)
 }
 
-export const citiesControllers = {create}
+export const citiesControllers = { create }
