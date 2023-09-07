@@ -17,5 +17,10 @@ async function select(){
         return result
 }
 
+async function verifyFlight(id){
+    const result = await db.query(`SELECT * FROM flights WHERE id=$1;`, [id])
+    return result
+}
 
-export const flightsRepositories = {insert, select}
+
+export const flightsRepositories = {insert, select, verifyFlight}

@@ -6,4 +6,9 @@ async function insert(firstName, lastName){
     
 }
 
-export const passengersRepositories = {insert}
+async function read(id){
+    const result = await db.query(`SELECT * FROM passengers WHERE id=$1;`, [id])
+    return result
+}
+
+export const passengersRepositories = {insert, read}
