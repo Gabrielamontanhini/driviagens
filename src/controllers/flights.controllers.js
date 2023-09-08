@@ -7,8 +7,8 @@ async function create(req, res) {
 }
 
 async function read(req, res) {
-    const {origin, destination} = req.query
-    const allFlights = await flightsServices.read(origin, destination)
+    const {origin, destination, "smaller-date": smaller, "bigger-date": bigger } = req.query
+    const allFlights = await flightsServices.read(origin, destination, smaller, bigger)
     return res.status(200).send(allFlights.rows)
 }
 
