@@ -11,7 +11,8 @@ async function select() {
 FROM travels AS t
 JOIN passengers AS p ON t."passengerId" = p.id
 GROUP BY "passenger"
-ORDER BY "travels" DESC;`)
+ORDER BY "travels" DESC
+LIMIT 10;`)
     return result
 }
 

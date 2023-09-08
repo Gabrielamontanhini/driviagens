@@ -10,8 +10,8 @@ async function create(origin, destination, date) {
     flightsRepositories.insert(origin, destination, date)
 }
 
-async function read() {
-    const result = await flightsRepositories.select()
+async function read(origin, destination) {
+    const result = await flightsRepositories.select(origin, destination)
     return result
 }
 
