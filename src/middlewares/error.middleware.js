@@ -17,5 +17,5 @@ export default function errorHandler(error, req, res, next) {
         return res.status(httpStatus.UNPROCESSABLE_ENTITY).send(err.message)
     }
 
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send(`Sorry, something went ${error.type} 😢`);
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send(`Sorry, something went ${error} 😢`);
 }

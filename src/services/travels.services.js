@@ -8,7 +8,7 @@ async function create(passengerId, flightId){
     if (passengerExists.rows.length === 0) throw notFoundError("Passageiro")
     const flightExists = await flightsRepositories.verifyFlight(flightId)
     if (flightExists.rows.length === 0) throw notFoundError("Vôo")
-    travelsRepositories.insert(passengerId, travelId)
+    travelsRepositories.insert(passengerId, flightId)
 }
 
 async function read(){

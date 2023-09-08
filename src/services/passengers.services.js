@@ -4,4 +4,8 @@ function create(firstName, lastName){
     passengersRepositories.insert(firstName, lastName)
 }
 
-export const passengersServices = {create}
+async function read(nome){
+    const result = await passengersRepositories.readPassengers(nome)
+    return result.rows
+}
+export const passengersServices = {create, read}

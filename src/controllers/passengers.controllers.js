@@ -6,4 +6,9 @@ function create(req, res) {
     res.sendStatus(201)
 }
 
-export const passengersControllers = { create }
+async function read(req, res){
+    const { nome } = req.query
+    const allPassengers = await passengersServices.read(nome)
+    res.status(200).send(allPassengers)
+}
+export const passengersControllers = { create , read}
