@@ -15,10 +15,12 @@ async function readPassengers(nome){
     const queryParams = []
     let query = `SELECT * FROM passengers`;
     if (nome) {
-        query += ` WHERE passengers."firstName" ILIKE $1 OR passengers."lastName" ILIKE $1;`
+        query += ` WHERE passengers."firstName" ILIKE $1 OR passengers."lastName" ILIKE $2;`
+        queryParams.push(`%${nome}%`)
         queryParams.push(`%${nome}%`)
     }
     const result = await db.query(query, queryParams)
+    console.log(query)
     return result
 }
 export const passengersRepositories = {insert, read, readPassengers}

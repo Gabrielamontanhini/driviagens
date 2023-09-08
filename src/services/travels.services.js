@@ -11,8 +11,8 @@ async function create(passengerId, flightId){
     travelsRepositories.insert(passengerId, flightId)
 }
 
-async function read(){
-    const result = await travelsRepositories.select()
+async function read(name){
+    const result = await travelsRepositories.select(name)
     return result
 }
 

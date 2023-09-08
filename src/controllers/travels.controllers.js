@@ -9,8 +9,8 @@ async function create(req, res) {
 }
 
 async function read(req, res) {
-
-    const passengersTravels = await travelsServices.read()
+    const {name} = req.query
+    const passengersTravels = await travelsServices.read(name)
     return res.status(200).send(passengersTravels.rows)
 
 }

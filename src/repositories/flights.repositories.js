@@ -39,7 +39,8 @@ async function select(origin, destination, smaller, bigger) {
         queryParams.push(`%${smaller}%`)
         queryParams.push(`%${bigger}%`)
         query += ` AND flights.date BETWEEN $${queryParams.length-1} AND $${queryParams.length}`
-    } else if (smaller && bigger && queryParams.length==0){
+    }
+    else if (smaller && bigger && queryParams.length==0){
         queryParams.push(`%${smaller}%`)
         queryParams.push(`%${bigger}%`)
         query += ` WHERE flights.date BETWEEN $${queryParams.length-1} AND $${queryParams.length}`
