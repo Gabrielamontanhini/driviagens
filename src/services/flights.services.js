@@ -1,7 +1,10 @@
+import { badRequest } from "../errors/badRequest.js";
 import { conflictError } from "../errors/conflict.js";
 import { notFoundError } from "../errors/notFound.js";
+import { unprocessable } from "../errors/unprocessable.js";
 import { citiesRepositories } from "../repositories/cities.repositories.js";
 import { flightsRepositories } from "../repositories/flights.repositories.js";
+import { dateQuerySchema} from "../schemas/flights.schemas.js";
 
 async function create(origin, destination, date) {
     const cityExists = await citiesRepositories.verifyCities(origin, destination)
@@ -11,6 +14,16 @@ async function create(origin, destination, date) {
 }
 
 async function read(origin, destination, smaller, bigger) {
+    if ((smaller && !bigger) || (!smaller && bigger)) throw unprocessable("intervalo das datas")
+    if (smaller >= bigger) throw badRequest("A data inicial deve ser menor que a final")
+    const data = {
+        smaller, bigger
+    }
+    const validation = dateQuerySchema.validate(data)
+    if (validation.error) {
+        console.log(validation.error.details)
+        throw unprocessable("formato das datas")
+    }
     const result = await flightsRepositories.select(origin, destination, smaller, bigger)
     return result
 }
