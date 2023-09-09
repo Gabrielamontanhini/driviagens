@@ -14,16 +14,17 @@ async function create(origin, destination, date) {
 }
 
 async function read(origin, destination, smaller, bigger) {
-    if ((smaller && !bigger) || (!smaller && bigger)) throw unprocessable("intervalo das datas")
+    if ((smaller && !bigger) || (!smaller && bigger)) throw unprocessable("São necessárias ambas as datas inicial e final")
     if (smaller >= bigger) throw badRequest("A data inicial deve ser menor que a final")
-    const data = {
-        smaller, bigger
-    }
-    const validation = dateQuerySchema.validate(data)
-    if (validation.error) {
-        console.log(validation.error.details)
-        throw unprocessable("formato das datas")
-    }
+    if (smaller && bigger){
+        const data = {
+            smaller, bigger
+        }
+        const validation = dateQuerySchema.validate(data)
+        if (validation.error) {
+            console.log(validation.error.details)
+            throw unprocessable("formato das datas")
+        }}
     const result = await flightsRepositories.select(origin, destination, smaller, bigger)
     return result
 }

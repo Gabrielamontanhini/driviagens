@@ -4,6 +4,8 @@ import { flightsRepositories } from "../repositories/flights.repositories.js";
 import { passengersRepositories } from "../repositories/passengers.repositories.js";
 import { travelsRepositories } from "../repositories/travels.repositories.js";
 
+const MAX_RESULTS = 10
+
 async function create(passengerId, flightId){
     const passengerExists = await passengersRepositories.read(passengerId)
     if (passengerExists.rows.length === 0) throw notFoundError("Passageiro")
@@ -14,7 +16,7 @@ async function create(passengerId, flightId){
 
 async function read(name){
     const result = await travelsRepositories.select(name)
-    if (result.rows.length > 10) throw tooMany()
+    if (result.rows.length > MAX_RESULTS) throw tooMany()
     return result
 }
 
