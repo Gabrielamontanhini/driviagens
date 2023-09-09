@@ -16,8 +16,7 @@ async function select(name) {
         query += ` WHERE p."firstName" || ' ' || p."lastName" ILIKE $1`
     }
     query += ` GROUP BY "passenger"
-        ORDER BY "travels" DESC
-        LIMIT 10`
+        ORDER BY "travels" DESC`
     const result = await db.query(query, queryParams)
     return result
 }
